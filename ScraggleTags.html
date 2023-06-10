@@ -1,0 +1,242 @@
+<!doctype html> 
+<!--This is the HTML for the Scraggle game-->
+<!--Author: Nathan Pokrandt-->
+<!--based off of Arthur Manning's prototype code-->
+<!--reference to a Boggle variant my game shares many similarities with: 
+https://wordtwist.puzzlebaron.com/gameover.php-->
+<html>
+    <head>
+        <!--this will show up on the tab while it is open-->
+        <title>Scraggle</title>
+
+    </head>
+    <!--CSS-->
+    <link rel="stylesheet" href="ScraggleStyle.css">
+    <body onmouseup="endWord()">
+        <!--ad space; since it is just a demonstration, the ad is not legitimate-->
+        <div class="adcontainer" id="adcontainer1">
+             <img src="Capture.PNG" alt="Advertisement 1" style="width:600px;height:78px;">
+        </div>
+        <!--The current Title for the game. Visible in all pages-->
+        <h1 id="title">Welcome to Scraggle!</h1>
+
+	<!--The opening screen-->
+	<div id = "openingScreen">
+            <!--this is a box that contains a welcome message and basic rules-->
+	    <section id="intro">
+	        <p>Scraggle is a fantastic crossover between Boggle and Scrabble! The rules are simple:
+	        You play by yourself or against an opponent to find words in a 4x4 grid. You have 3 minutes to find as
+	        many words as you can. Once time runs out, your words will be counted up and scored. A word's score 
+	        consists both of the word's length and of the point values of the letters within the word. 
+	        If there are multiple players, word lists will be compared and words in common will be omitted. 
+                Whoever has the best score wins! You can play as a guest, but only in single player mode. 
+                If you don't have an account, you can create one 
+                <span class="inlineCancel" onmousedown="newUserFromIntro()">here</span></p>
+                <!--the span is where a fake link will go. See CSS page for more info-->
+	    </section>
+            <!--the buttons for going to the login page or guest mode-->
+	    <div class="centered" id="buttons">
+		<button type="button" id="logIn" onclick="goToLogin()"><strong>Log in</strong></button>
+	        <button type="button" id="guest" onclick="guestMode()"><strong>Play as Guest</strong></button>
+            </div>
+	</div>
+
+	<!--The create new user page-->
+	<div id="createUser">
+            <!--a link back to the main page-->
+	    <p class="cancel" onmousedown="leaveCreateUserPage()">cancel<p>
+            <!--instructions for creating a new user account-->
+	    <p id="newUserInstructions">Type in the username and password you would like to use below: </p>
+            <!--three pairs of a label and an input box: one for new username, one for new password,
+                and one to confirm the new password-->
+	    <div id="newUsername" class="centered">
+		<p id="newUsernameLabel">Input Username:</p>
+		<input type="text" id="newUsernameInputBox" value="">
+	    </div>
+	    <div id="newPassword" class="centered">
+		<p id="newPasswordLabel">Input Password:</p>
+		<input type="password" id="newPasswordInputBox" value="">
+	    </div>
+	    <div id="confirmPassword" class="centered">
+		<p id="confirmPasswordLabel">Confirm Password:</p>
+		<input type="password" id="confirmPasswordInputBox" value="">
+                <!--an error message for if creating a new user fails-->
+		<p id="passwordsDontMatch"></p>
+	    </div>
+            <!--a button for confirming new user-->
+	    <div class="centered">
+	        <button type="button" id="newUserCreated" onclick="createUser(newUsernameInputBox.value, 
+                newPasswordInputBox.value, confirmPasswordInputBox.value)">
+                <strong>Create User</strong></button>
+	    </div>
+	</div>
+
+	<!--The login page-->
+	<div id="login">
+            <!--a link back to the main page-->
+	    <p class="cancel" onmousedown="leaveLoginPage()">cancel<p>
+            <!--instructions for logging in-->
+	    <p id="loginInstructions">Type in your username and password below. 
+	    If you do not have an account, <span class="inlineCancel" onmousedown="newUserFromLogin()">click here</span> to create one.</p>
+            <!--the span is where a fake link will go. See CSS page for more info-->
+            <!--two pairs of a label and an input box: one for username, and one for password-->
+	    <div id="username" class="centered">
+		<p id="usernameLabel">Input Username:</p>
+		<input type="text" id="usernameInputBox" value="">
+	    </div>
+	    <div id="password" class="centered">
+		<p id="passwordLabel">Input Password:</p>
+		<input type="password" id="passwordInputBox" value="">
+		<p id="passwordError"></p>
+	    </div>
+            <!--a button to log in-->
+	    <div class="centered">
+	        <button type="button" id="loginSuccessful" onclick="goToGamemode(usernameInputBox.value, passwordInputBox.value)"><strong>Log In</strong></button>
+	    </div>
+	</div>
+
+	<!--Choose gamemode-->
+	<div id="chooseGamemode">
+            <!--a link back to the main page, that also logs you out-->
+	    <p class="cancel" onmousedown="logOut()">Log Out</p>
+            <!--brief descriptions of each game mode-->
+	    <p id="gamemodeInstructions">Single Player Mode is mostly for practice purposes. The game will play as normal,
+	    but all words you find will be scored. Multiplayer is similar, but your list will be compared to other players'
+ 	    lists, and words in common will not be scored. Ready? Let's play!</p>\
+            <!--buttons to single player game mode and multiplayer game mode-->
+	    <div id="gamemodeButtons" class="centered">
+		<button type="button" id="singlePlayer" onclick="goToSinglePlayer()"><strong>Single Player</strong></button>
+		<button type="button" id="multiPlayer" onclick="goToMultiplayer()"><strong>Multiplayer</strong></button>
+	    </div>
+	</div>
+
+	<!--Multiplayer waiting page-->
+        <!--if going to multiplayer mode you will be directed here-->
+	<div id="waitingRoom">
+            <!--a link back to the choose gamemode page-->
+	    <p class="cancel" onmousedown="backToChooseGamemode()">Go Back</p>
+            <!--a label that indicates you are still waiting for an oppponent-->
+	    <p id="waitingLabel">Waiting for players to join</p>
+            <!--a list that wil display the names of those waiting to play the game-->
+	    <div class="centered">	        
+	        <textarea readonly id="playerList"> 
+                </textarea>
+	    </div>
+	</div>
+        
+        <!--these indicate potential expansion-->
+	<!--stats page (in the works)-->
+
+	<!--instructions page (in the works)-->
+
+        <!--The main page; used for guest mode, single player mode, and multiplayer mode-->
+	<div id="gamePage">
+        <!--a link back to the main page. If single of multiplayer it will also log you out
+            in multiplayer only shows up while the game is not in progress-->
+        <p class="cancel" id="leaveGame" onmousedown="leaveGamePage()">leave guest<p>        
+        <div class="centered"> 
+                <!--shows the running score-->
+                <p id="scoreLabel">Score: 0</p>           
+                <!--<input type="text" id="typeWord" value="">-->  
+                <!--shows how much time is left--> 
+                <p id="timer">3:00</p>         
+        </div>
+        <div class="centered">                
+            <!--At current this div holds the game cubes-->
+            <div id="mainContent" style="width: 340px;">
+                    
+                <!--The 16 cubes for the grid, each with a unique id, and 3 events used to form words. 
+                    To see more on those, see the javascript-->
+                <div class="cubecontainer" id="box1" onmousedown="startWord('box1')"    
+                onmouseenter="makeWord('box1')">
+                    <p></p>
+                </div>
+                <div class="cubecontainer" id="box2" onmousedown="startWord('box2')" 
+                onmouseenter="makeWord('box2')"> 
+                    <p></p>
+                </div>
+                <div class="cubecontainer" id="box3" onmousedown="startWord('box3')" 
+                onmouseenter="makeWord('box3')">
+                    <p></p>
+                </div>
+                <div class="cubecontainer" id="box4" onmousedown="startWord('box4')" 
+                onmouseenter="makeWord('box4')"> 
+                    <p></p>
+                </div>
+                <div class="cubecontainer" id="box5" onmousedown="startWord('box5')" 
+                onmouseenter="makeWord('box5')">
+                    <p></p>
+                </div>
+                <div class="cubecontainer" id="box6" onmousedown="startWord('box6')" 
+                onmouseenter="makeWord('box6')">
+                    <p></p>
+                </div>
+                <div class="cubecontainer" id="box7" onmousedown="startWord('box7')" 
+                onmouseenter="makeWord('box7')">
+                    <p></p>
+                </div>
+                <div class="cubecontainer" id="box8" onmousedown="startWord('box8')" 
+                onmouseenter="makeWord('box8')">
+                    <p></p>
+                </div>
+                <div class="cubecontainer" id="box9" onmousedown="startWord('box9')" 
+                onmouseenter="makeWord('box9')">
+                    <p></p>
+                </div>
+                <div class="cubecontainer" id="box10" onmousedown="startWord('box10')" 
+                onmouseenter="makeWord('box10')">
+                    <p></p>
+                </div>
+                <div class="cubecontainer" id="box11" onmousedown="startWord('box11')" 
+                onmouseenter="makeWord('box11')">
+                    <p></p>
+                </div>
+                <div class="cubecontainer" id="box12" onmousedown="startWord('box12')" 
+                onmouseenter="makeWord('box12')"> 
+                    <p></p>
+                </div>
+                <div class="cubecontainer" id="box13" onmousedown="startWord('box13')" 
+                onmouseenter="makeWord('box13')">
+                    <p></p>
+                </div>
+                <div class="cubecontainer" id="box14" onmousedown="startWord('box14')" 
+                onmouseenter="makeWord('box14')">
+                    <p></p>
+                </div>
+                <div class="cubecontainer" id="box15" onmousedown="startWord('box15')" 
+                onmouseenter="makeWord('box15')">
+                    <p></p>
+                </div>
+                <div class="cubecontainer" id="box16" onmousedown="startWord('box16')" 
+                onmouseenter="makeWord('box16')">
+                    <p></p>
+                </div>       
+            </div>  
+        <!--This is the word list, made readonly so the player can't type in it--> 
+        <textarea readonly id="wordlist"> 
+
+        </textarea>
+        <!--shows either an invalid word error message or a game over message-->
+        <p id="invalidWord"></p> 
+        <!--buttons to start and restart the game-->
+        <button type="button" id="startGame" onclick="startTimer()">Start Game</button>
+        <button type="button" id="restartGame" onclick="restartTimer()">Play Again?</button>
+        </div>
+        <!--a box to display invalid words and a title for that box-->
+	<div class="centered">
+            <p id="InvalidWordsTitle">Invalid Words:</p>
+	    <textarea readonly id="invalidWords">
+	    </textarea>
+	</div>
+	</div>
+        <!--ad space; since it is just a demonstration, the ad is not legitimate-->
+        <div class="adcontainer" id="adcontainer2">
+             <img src="Capture2.PNG" alt="Advertisement 2" style="width:600px;height:78px;">
+        </div> 
+        <!--The script that the game uses-->
+        <script src="ScraggleScript.js" ></script> 
+    </body>
+    
+    
+
+</html>

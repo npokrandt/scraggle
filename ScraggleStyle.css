@@ -1,0 +1,334 @@
+/*Welcome to the CSS for Scraggle!
+  Author: Nathan Pokrandt with help from W3Schools*/
+
+/*A simple background color*/
+body {
+    background-color: darkgrey;
+}
+
+/*defines either of the pages adspaces. One is at the top and the other is at the bottom*/
+.adcontainer {
+     border: solid 1px;
+     margin-left: auto;
+     margin-right: auto;
+     width: 600px;
+     height: 78px;
+     /*the ad doesn't actually lead anywhere yet; after all, this is just to show how this game will look
+     with advertisements*/
+     cursor: pointer;
+}
+
+
+/*simple changes for the title*/
+h1 {
+    width: 400;
+    color: green;
+    font-family: "algerian";
+    text-align: center;
+}
+
+/*CSS for the start page*/
+
+
+/*This formats the introduction message's container*/
+#intro{
+    background-color: cadetBlue;
+    border: solid 5px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 75px;
+    width: 600px;
+}
+
+/*this formats the text of the introduction message*/
+#intro p {
+    color: purple;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+/*gives the buttons space from the introduction*/
+#buttons{
+    margin-top: 20px;
+}
+
+/*formats the buttons for going to guest mode and login*/
+#buttons button{
+    height: 50px;
+    width: 150px;
+    margin: 10px;
+    font-size: 18px;
+}
+
+
+/*CSS for the new user creation*/
+
+/*goes for all fake links. this class just takes normal text and makes it act as a link.*/
+.cancel{
+    margin-top: -50px;
+    margin-left: 50px;
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/*this applies for the "links" that are inside a span, such as the ones to the create user page from the 
+  intro page or the login page*/
+.inlineCancel{
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+/*this formats the instructions given to the person trying to create a new user account*/
+#newUserInstructions{
+    font-size: 30px;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+/*these format each of the input boxes and labels for adding a new username and password, and confirming the password.
+  As such, the code between the three of them is quite similar*/
+#newUsernameLabel{
+    display: inline;
+    margin-right: 60px;
+}
+
+#newPassword{
+    margin-top: 25px;
+}
+
+#newPasswordLabel{
+    display: inline;
+    margin-right: 60px;
+}
+
+#confirmPassword{
+    margin-top: 25px;
+}
+
+#confirmPasswordLabel{
+    display: inline;
+    margin-right: 40px;
+}
+
+/*this formats an error message for if there is an error in new user creation e.g. the username they give already exists*/
+#passwordsDontMatch{
+    margin-left: 160px;
+    margin-top: -1px;
+    font-size: 13px;
+    color: red;
+    font-style: italic;
+}
+
+/*this formats the button to create a new user*/
+#newUserCreated{
+    margin-top: 25px;
+    margin-bottom: 50px;
+    height: 30px;
+    width: 100px;
+}
+
+
+/*CSS for login page*/
+
+/*this formats the instructions for a user logging in*/
+#loginInstructions{
+    font-size: 30px;
+    text-align: center;
+    font-family: sans-serif;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+/*this formats the input boxes and labels for the user's username and password*/
+#username{
+    margin-top: 55px;
+}
+
+#password{
+    margin-top: 40px;
+}
+
+
+#usernameLabel{
+    display: inline;
+    margin-right: 60px;
+}
+
+#passwordLabel{
+    display: inline;
+    margin-right: 60px;
+}
+
+/*this formats an error message for if login is unsuccessful*/
+#passwordError{
+    margin-left: 160px;
+    margin-top: -1px;
+    font-size: 13px;
+    color: red;
+    font-style: italic;
+}
+
+/*this formats the button to log in*/
+#loginSuccessful{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    height: 30px;
+    width: 100px;
+}
+
+
+/*CSS for the choose gamemode page*/
+
+/*this formats a box that contains instructions about the two gamemodes. It is the same as is used
+  for the intro page message*/
+#gamemodeInstructions{
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 50px;
+    border: solid 5px;
+    border-color: black;
+    padding: 20px;
+    color: purple;
+    background-color: cadetBlue;
+}
+
+/*this formats the position of buttons on the page*/
+#gamemodeButtons{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+/*this formats the buttons themselves*/
+#gamemodeButtons button{
+    height: 75px;
+    width: 225px;
+    font-size: 27px;
+}
+
+/*these are final positional adjustments to the buttons, to ensure they are not squished into each other*/
+#singlePlayer{
+    margin-right: 100px;
+}
+
+#multiPlayer{
+    margin-left: 100px;
+}
+
+
+/*CSS for the wait room*/
+
+/*this formats the label in the waiting room*/
+#waitingLabel{
+    text-align: center;
+    margin-right: 280px;
+    margin-bottom: -1px;
+    margin-top: 100px;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+/*this formats the textarea that the players' names will appear in who are waiting for the game*/
+#playerList{
+    height: 200px;
+    width: 500px;
+    margin-bottom: 100px;
+}
+
+/*CSS for the main game page*/
+
+/*What makes a cube a cube. Most of it is self-explanatory*/
+.cubecontainer{
+    height: 75px;
+    width: 75px;
+    margin: 5px;
+    color:black;
+    float: left;
+    font-family: "arial black";
+    font-size: 36px;
+    text-align: center;
+    line-height: 75px;
+    background-color: lavender;
+    background-position: center center;
+    cursor:pointer;
+    user-select: none;
+}
+
+/*used to center divs*/
+.centered {
+    text-align: center;
+}
+
+/*small changes for the div holding the cubes*/
+#mainContent{
+   background-color:purple;
+   display:inline-block;
+}
+
+/*every div is a block element*/
+div {
+    display: block;
+}
+
+/*this shows the current score of the game*/
+#scoreLabel{
+    text-align: center;
+    display: inline;
+    font-size: 30px;
+}
+
+/*dimensions for the wordlist*/
+#wordlist{
+    height: 320px;
+    width: 150px;
+}
+
+/*is used to show an error message if a word is invalid. It doubles as an end-of-game message when the game ends*/
+#invalidWord{
+    color: black;
+    font-size: 30px;
+    font-family: "Lucida Console";
+}
+
+/*this is for the dimensions of the input box for typing in the word you are trying to find in the grid.
+  This is still in the works*/
+#typeWord{
+    height: 50px;
+    width: 330px;
+    position: relative;
+    margin: 5px;
+    padding: 5px;
+    font-size: 40px;
+}
+
+/*this shows the timer on the game page*/
+#timer{
+    font-size: 50px;
+    margin-left: 270px;
+    margin-right: 30px;
+    display: inline;
+}
+
+/*this is the button to restart the game, when the game is over*/
+#restartGame{
+    visibility: hidden;
+}
+
+/*this is a list where invalid words show up*/
+#invalidWords{
+    width: 500px;
+    height: 100px;
+    background-color: black;
+    color: red;
+    margin-bottom: 50px;
+}
+
+/*this is a title for the invalid word box*/
+#InvalidWordsTitle{
+    font-size: 20px;
+    font-family: "miriam fixed";
+    color: black;
+}
