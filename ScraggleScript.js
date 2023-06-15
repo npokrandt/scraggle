@@ -1,6 +1,7 @@
 /* This JavaScript file contains the majority of the game mechanics*/
 /* Nathan Pokrandt c2020*/
 
+alert("This site is currently under maintainance, and most of its functions are unavailable. For now, enjoy the game in guest mode to see how it works. I hope to have this fixed shortly. - npokrandt")
 //The letter distribution the game uses. Credit is given below
 //One of each of the letters will be picked from each grouping, and each will be placed at random in the 4x4 grid
 letterDistribution = [
